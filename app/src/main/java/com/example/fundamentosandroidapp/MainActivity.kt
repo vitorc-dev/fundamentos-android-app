@@ -32,7 +32,8 @@ class MainActivity : AppCompatActivity() {
             navController?.currentDestination?.id.let {
                 when(it){
                     R.id.firstFragment -> {
-                        navController?.navigate(R.id.action_firstFragment_to_secondFragment)
+                        navController?.navigate(R.id.action_firstFragment_to_secondFragment
+                        ,bundleOf("first_argument" to arrayOf("1", "5", "7")))
 
                         binding.buttonNextFragment.text =
                             getString(R.string.go_back_to_the_first_fragment)
