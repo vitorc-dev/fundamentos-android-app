@@ -27,6 +27,8 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-
+        binding.buttonNextFragment.setOnClickListener {
+            navController?.navigate(R.id.action_firstFragment_to_secondFragment)
+        }
     }
 }
