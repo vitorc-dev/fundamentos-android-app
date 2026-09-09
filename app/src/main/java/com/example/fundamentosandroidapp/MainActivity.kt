@@ -3,6 +3,7 @@ package com.example.fundamentosandroidapp
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
@@ -28,7 +29,24 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.buttonNextFragment.setOnClickListener {
-            navController?.navigate(R.id.action_firstFragment_to_secondFragment)
+            navController?.currentDestination?.id.let {
+                when(it){
+                    R.id.firstFragment -> {
+                        navController?.navigate(R.id.action_firstFragment_to_secondFragment)
+
+                        binding.buttonNextFragment.text =
+                            getString(R.string.go_back_to_the_first_fragment)
+                    }
+                    R.id.secondFragment -> {
+                        navController?.popBackStack()
+
+                        binding.buttonNextFragment.text =
+                            getString(R.string.go_to_the_next_page)
+                    }
+                }
+            }
+
+
         }
     }
 }
